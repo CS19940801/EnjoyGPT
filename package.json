@@ -1,0 +1,22 @@
+{
+  "name": "enjoygpt",
+  "version": "0.0.1",
+  "description": "cs study agi",
+  "main": "index.js",
+  "scripts": {
+    "build-test": "pnpm -r exec pnpm build",
+    "build-demos": "pnpm -r exec pnpm build",
+    "build-prod": "pnpm -r exec pnpm build",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/CS19940801/EnjoyGPT.git"
+  },
+  "author": "Cs Enjoy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CS19940801/EnjoyGPT/issues"
+  },
+  "homepage": "https://github.com/CS19940801/EnjoyGPT#readme"
+}
