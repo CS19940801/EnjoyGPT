@@ -1,20 +1,25 @@
 'use client'
 
 import { useRef, useState, useEffect } from "react";
-
+import { Input, Button } from "antd";
+import { log } from "console";
 type Message = {
     answer: string;
     end: boolean;
 };
-
+const { TextArea } = Input;
 export default function Layout() {
     // let message: any, setMessage: any, question: any, setQuestion: any;
     // useEffect(() => {
         const [message, setMessage] = useState<Message[]>([]);
         const [question, setQuestion] = useState<string>("");
-        const ref = useRef<any>();
+        // const ref = useRef<any>();
+        const lll = useRef<any>();
+        console.log(lll,11111111);
         const send = () => {
-            const question = ref.current.value as string;
+            // 获取输入框内容
+            // const question = ref.current.value as string;
+            const question = lll.current.resizableTextArea.textArea.value as string;
             console.log('====================================');
             console.log(`question: ${question}`);
             console.log('====================================');
@@ -29,7 +34,9 @@ export default function Layout() {
                 }),
             });
             setQuestion(question);
-            ref.current.value = "";
+            // 重制输入框
+            // ref.current.value = "";
+            lll.current.resizableTextArea.textArea.value = "";
             setMessage((prev) => [...prev, { answer: "", end: false }]);
             const eventSource = new EventSource("http://localhost:2999/sse");
             eventSource.onmessage = ({ data }) => {
@@ -54,7 +61,7 @@ export default function Layout() {
                 <span className="w-10 h-10">
                     <img src="https://ollama.com/public/ollama.png" className="w-full h-full" />
                 </span>
-                <span>帅爷ollama大模型</span>
+                <span>EnjoyGpt-llama3大模型</span>
                 <span className="">欢迎使用</span>
             </nav>
             <div className="w-full h-[calc(100%-64px)] relative">
@@ -83,17 +90,24 @@ export default function Layout() {
                         </div>
                     </div>
                     <footer className="rounded-lg relative bottom-2 w-[calc(100%-200px)] h-[64px] border-red-300 border-solid border-[1px]">
-                        <input
+                        {/* <input
                             ref={ref}
                             type="text"
                             className="rounded-lg w-full px-4 text-lg h-full caret-red-300 outline-none focus:border-[1px] focus:border-solid focus:border-red-500"
-                        />
-                        <button
+                        /> */}
+                        {/* <button
                             onClick={() => send()}
                             className="z-10 focus:text-red-700 absolute right-0 top-0 w-[64px] h-[62px] bg-red-300"
                         >
                             发送
-                        </button>
+                        </button> */}
+                        <TextArea
+                            ref={lll}
+                            showCount
+                            maxLength={100}
+                            placeholder="disable resize"
+                        />
+                        <Button onClick={() => send()} type="primary">发送</Button>
                     </footer>
                 </main>
             </div>
