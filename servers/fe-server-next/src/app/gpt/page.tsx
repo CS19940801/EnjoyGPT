@@ -59,8 +59,8 @@ export default function Layout() {
     return (
         <div style={{margin:'20px'}}>
             <nav style={{ margin: '0 0 20px 0' }}>
-                <p style={{ margin: '0 auto', textAlign: 'center', }}>
-                    <img src="https://ollama.com/public/ollama.png" className="w-full h-full" />
+                <p style={{ margin: '0 auto', textAlign: 'center', marginBottom: '10px', }}>
+                    <img style={{height:'150px'}} src="https://ollama.com/public/ollama.png" className="w-full h-full" />
                 </p>
                 <p style={{ textAlign: 'center',marginBottom:'20px',fontSize:'h1'}}>EnjoyGpt-llama3</p>
             </nav>
