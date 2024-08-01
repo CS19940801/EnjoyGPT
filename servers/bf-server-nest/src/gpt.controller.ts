@@ -17,7 +17,7 @@ export class GptController {
   sse(): Observable<MessageEvent> {
     return this.messageSubject.asObservable();
   }
-  @Post('question')
+  @Post('question') // question 接口
   async addList(@Body() body: { question: string }): Promise<any> {
     const stream = await this.model.stream(body.question);
     for await (const str of stream) {
