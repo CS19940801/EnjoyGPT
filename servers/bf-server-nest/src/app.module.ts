@@ -4,8 +4,9 @@ import { GptController } from './gpt.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController, GptController],
-  providers: [AppService],
+  imports: [], // 倒入模块
+  controllers: [AppController, GptController], // 所需控制器
+  providers: [AppService], // 所需服务
+  // exports:[] // 导出服务
 })
 export class AppModule {}

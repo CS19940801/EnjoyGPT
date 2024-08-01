@@ -1,8 +1,8 @@
-import { Controller, Post, Body, Sse, Header } from '@nestjs/common';
-import { Observable, Subject } from 'rxjs';
-import { Ollama } from '@langchain/community/llms/ollama';
+import { Controller, Post, Body, Sse, Header } from '@nestjs/common'; // 引入nestjs的controller等核心功能
+import { Observable, Subject } from 'rxjs';  // 引入rxjs的Observable（流）和Subject
+import { Ollama } from '@langchain/community/llms/ollama'; // langchain Ollama 模型接入
 
-@Controller()
+@Controller() // 装饰器
 export class GptController {
   private messageSubject = new Subject<MessageEvent>();
   private model: Ollama;
@@ -12,9 +12,9 @@ export class GptController {
       model: 'llama3',
     });
   }
-  @Sse('sse')
+  @Sse('sse') // sse 接口
   @Header('Content-Type', 'text/event-stream')
-  sse(): Observable<MessageEvent> {
+  sse(): Observable<MessageEvent> { // 返回流
     return this.messageSubject.asObservable();
   }
   @Post('question') // question 接口
@@ -24,7 +24,6 @@ export class GptController {
       this.messageSubject.next({
         data: JSON.stringify({ answer: str, end: false }),
       } as MessageEvent);
-      // Å
     }
     this.messageSubject.next({
       data: JSON.stringify({ answer: '', end: true }),
